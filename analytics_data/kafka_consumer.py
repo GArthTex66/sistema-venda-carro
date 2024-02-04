@@ -18,3 +18,7 @@ def main():
         data = msg.value().decode('utf-8')
         print(data)
     consumer.close()
+
+if __name__ == '__main__':
+    main()
+
