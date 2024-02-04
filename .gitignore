@@ -36,5 +36,8 @@ nb-configuration.xml
 *.orig
 *.rej
 
+# pycache
+__pycache__/
+
 # Local environment
 .env
