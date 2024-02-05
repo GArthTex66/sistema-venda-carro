@@ -1,13 +1,20 @@
 from models.connection_options.connection import DBConnectionHandler
+from models.repository.analytics_brand_collection_repository import AnalyticsBrandCollectionRepository
+
 
 db_handler = DBConnectionHandler()
-conn1 = db_handler.get_db_connection()
-print(conn1)
-
 db_handler.connect_to_db()
-conn2 = db_handler.get_db_connection()
-print(conn2)
+connection = db_handler.get_db_connection()
+analytics_brand_collection_repository = AnalyticsBrandCollectionRepository(connection)
 
-collection = conn2['analytics_brand']
-collection.insert_one({'brand':'Toyota','count':200})
+#analytics_brand_collection_repository.insert_document({'brand': 'minha marca', 'count': 1})
 
+brandsCount = analytics_brand_collection_repository.select_by_band('minha marca')
+
+print(brandsCount)
+
+analytics_brand_collection_repository.update_document('count', 2, {'brand': 'minha marca'})
+
+brandsCount = analytics_brand_collection_repository.select_by_band('minha marca')
+
+print(brandsCount)

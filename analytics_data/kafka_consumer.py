@@ -1,6 +1,8 @@
 from confluent_kafka import Consumer
+from models.connection_options.kafka_configs import kafka_infos
+from .save_analytic_service import SaveAnalyticService
 
-consumer = Consumer({'bootstrap.servers':'localhost:9092','group.id':'analytics-posts-group','auto.offset.reset':'earliest'})
+consumer = Consumer(kafka_infos)
 
 print('Kafka Consumer has been initiated...')
 
@@ -17,6 +19,7 @@ def main():
             continue
         data = msg.value().decode('utf-8')
         print(data)
+        SaveAnalyticService().saveDataAnalytics(data)     
     consumer.close()
 
 if __name__ == '__main__':

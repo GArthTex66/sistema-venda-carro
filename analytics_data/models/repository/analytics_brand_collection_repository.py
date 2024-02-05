@@ -5,7 +5,7 @@ class AnalyticsBrandCollectionRepository(CollectionRepository):
     def __init__(self, db_connection) -> None:
         super().__init__(db_connection)
 
-    def select_by_branch(self, brandName) -> List[Dict]:
+    def select_by_brand(self, brandName) -> List[Dict]:
         return self.select_many({'brand': brandName}, {'_id': 0})
     
     def select_by_count(self, countNum) -> List[Dict]:
