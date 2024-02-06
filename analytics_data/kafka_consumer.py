@@ -1,6 +1,6 @@
 from confluent_kafka import Consumer
 from models.connection_options.kafka_configs import kafka_infos
-from .save_analytic_service import SaveAnalyticService
+from save_analytic_service import SaveAnalyticService
 
 consumer = Consumer(kafka_infos)
 

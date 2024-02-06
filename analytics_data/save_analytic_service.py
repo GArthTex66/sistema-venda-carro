@@ -1,4 +1,5 @@
 import pandas as pd
+import json as json
 from models.connection_options.connection import DBConnectionHandler
 from models.repository.analytics_brand_collection_repository import AnalyticsBrandCollectionRepository
 
@@ -12,7 +13,8 @@ class SaveAnalyticService:
         self.__analytics_brand_collection_repository = AnalyticsBrandCollectionRepository(connection)
 
     def __saveBrandAnalytics(self,data):
-        brand = data['brand']
+        json_data = json.loads(data)
+        brand = json_data['brand']
         
         brand_data = self.__analytics_brand_collection_repository.select_by_brand(brand)
 
@@ -26,7 +28,7 @@ class SaveAnalyticService:
             self.__analytics_brand_collection_repository.update_document('count', count, brandFilter)
 
     def saveDataAnalytics(self,data):
-        self.__saveBrandAnalytics(self,data)
+        self.__saveBrandAnalytics(data)
        
 
 
